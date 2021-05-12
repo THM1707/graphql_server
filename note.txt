@@ -1,0 +1,14 @@
+1. Setting up project
+    1.1. Packages
+        - @types/node
+        - typescript
+        - nodemon
+        - @mikro-orm/cli
+        - @mikro-orm/core
+        - @mikro-orm/migrations
+        - @mikro-orm/postgresql
+        - pg
+
+
+    1.2. Module
+        - npx tsconfig.json
