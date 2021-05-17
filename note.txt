@@ -8,7 +8,21 @@
         - @mikro-orm/migrations
         - @mikro-orm/postgresql
         - pg
+        - express
+        - apollo-server-express
+        - graphql
+        - type-graphql
+        - @type/express
+        - class-validator
+        - reflect-metadata
 
 
     1.2. Module
         - npx tsconfig.json
+
+
+2. Mikro-orm commands
+    - npx mikro-orm migration:create -- run
+        create the migration file so next time 
+        	await orm.getMigrator().up();
+        run the created migration compatible with the created file will also run
