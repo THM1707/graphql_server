@@ -15,6 +15,7 @@
         - @type/express
         - class-validator
         - reflect-metadata
+        - argon2
 
 
     1.2. Module

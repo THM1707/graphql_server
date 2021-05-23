@@ -1,12 +1,13 @@
 import "reflect-metadata";
-import { PostResolver } from "./resolvers/post";
-import { HelloResolver } from "./resolvers/hello";
-import { MikroORM } from "@mikro-orm/core";
+import { Logger, MikroORM } from "@mikro-orm/core";
 import { __prod__ } from "./constants";
 import microConfig from "./mikro-orm.config";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
+import { HelloResolver } from "./resolvers/hello";
+import { PostResolver } from "./resolvers/post";
+import { UserResolver } from "./resolvers/user";
 
 const main = async () => {
 	const orm = await MikroORM.init(microConfig);
@@ -16,24 +17,27 @@ const main = async () => {
 
 	const apolloServer = new ApolloServer({
 		schema: await buildSchema({
-			resolvers: [HelloResolver, PostResolver],
+			resolvers: [HelloResolver, PostResolver, UserResolver],
 			validate: false,
 		}),
-
-		context: () => ({
-			em: orm.em,
-		}),
+		formatError: (err: Error) => {
+			if (err.message.startsWith("Something")) {
+				console.log(err);
+				return new Error("Internal server error");
+			}
+			return err;
+		},
+		context: () => ({ em: orm.em }),
+		debug: !__prod__,
 	});
 
 	apolloServer.applyMiddleware({ app });
 
 	app.listen(4000, () => {
-		console.log("Server started on localhost:4000");
+		console.log("server started on localhost:4000");
 	});
 };
 
 main().catch((err) => {
 	console.error(err);
 });
-
-console.log("Testing 1 2 3");
