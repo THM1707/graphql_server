@@ -16,6 +16,21 @@
         - class-validator
         - reflect-metadata
         - argon2
+        - redis 
+        - connect-redis
+        - express-session
+        - @types/redis
+        - @types/express-session
+        - @types/connect-redis
+        - cors
+        - @types/cors
+        - nodemailer
+        - @types/nodemailer
+        - ioredis
+        - uuid
+
+
+
 
 
     1.2. Module
@@ -27,3 +42,12 @@
         create the migration file so next time 
         	await orm.getMigrator().up();
         run the created migration compatible with the created file will also run
+
+
+3. psql
+- dev:nothing
+
+
+
+***
+https://github.com/expressjs/session/issues/799
