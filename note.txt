@@ -48,6 +48,10 @@
 - dev:nothing
 
 
+4. type graphql
+- a type-graphql's MiddlewareFn will run before the resolver it assigned to 
+
+
 
 ***
 https://github.com/expressjs/session/issues/799
