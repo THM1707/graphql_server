@@ -1,3 +1,4 @@
+import { Updoot } from "./entities/Updoot";
 import { ApolloServer } from "apollo-server-express";
 import connectRedis from "connect-redis";
 import cors from "cors";
@@ -25,8 +26,10 @@ const main = async () => {
 		logging: true,
 		synchronize: true,
 		migrations: [path.join(__dirname, "./migrations/*")],
-		entities: [User, Post],
+		entities: [User, Post, Updoot],
 	});
+
+	// await Post.delete({});
 
 	await conn.runMigrations();
 
